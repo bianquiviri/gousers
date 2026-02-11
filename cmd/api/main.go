@@ -34,6 +34,9 @@ func main() {
 	// Swagger documentation
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
+	// Serve Static Landing Page
+	r.StaticFile("/", "./web/index.html")
+
 	// API Routes
 	v1 := r.Group("/api/v1")
 	{
