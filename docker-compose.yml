@@ -1,0 +1,29 @@
+services:
+  app:
+    build: .
+    container_name: gousers_api
+    ports:
+      - "8084:8084"
+    env_file:
+      - .env
+    networks:
+      - bianquiviri_network
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: admiusers
+    ports:
+      - "3306:3306"
+    networks:
+      - bianquiviri_network
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d
+
+networks:
+  bianquiviri_network:
+    external: true
