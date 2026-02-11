@@ -15,8 +15,8 @@ else
   echo -e "La red ${GREEN}bianquiviri_network${NC} ya existe."
 fi
 
-# 2. Levantar los contenedores
-echo -e "Levantando el contenedor de la API con Docker Compose..."
+# 2. Construir e iniciar el contenedor
+echo -e "Construyendo la imagen e iniciando el contenedor de la API..."
 docker compose up -d --build
 
 # 3. Mostrar estado y URL de Swagger
