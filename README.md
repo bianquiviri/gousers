@@ -53,7 +53,12 @@ Si deseas ejecutarlo localmente sin Docker:
 
 ## Tests
 
-Para ejecutar los tests unitarios:
+Para ejecutar los tests unitarios localmente:
 ```bash
 go test ./...
+```
+
+Para ejecutar los tests **dentro del contenedor** de la API:
+```bash
+docker exec gousers_api go test ./...
 ```
