@@ -1,6 +1,9 @@
-FROM golang:1.24-alpine AS builder
+FROM golang:1.24-alpine
 
 WORKDIR /app
+
+# Install build dependencies
+RUN apk add --no-cache gcc musl-dev
 
 COPY go.mod go.sum ./
 RUN go mod download
@@ -12,15 +15,6 @@ RUN go install github.com/swaggo/swag/cmd/swag@latest
 RUN swag init -g cmd/api/main.go
 
 RUN go build -o main cmd/api/main.go
-
-FROM alpine:latest
-
-WORKDIR /root/
-
-COPY --from=builder /app/main .
-COPY --from=builder /app/.env .
-COPY --from=builder /app/docs ./docs
-COPY --from=builder /app/web ./web
 
 EXPOSE 8084
 
