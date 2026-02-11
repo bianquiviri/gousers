@@ -16,20 +16,19 @@ Este es un proyecto de API REST desarrollado en Go utilizando el framework Gin y
 
 ## Ejecución con Docker
 
-El proyecto está configurado para ejecutarse en el puerto **8084** dentro de la red **bianquiviri_network**.
+El proyecto está configurado para ejecutarse en el puerto **8084** dentro de la red **bianquiviri_network**. Se asume que el contenedor de la base de datos ya está activo en esta red.
 
-1. Asegúrate de que la red externa exista:
+1. Asegúrate de que la red externa exista y el contenedor de BD esté corriendo:
    ```bash
    docker network create bianquiviri_network
    ```
 
-2. Levanta los contenedores:
+2. Levanta el contenedor de la API:
    ```bash
    docker compose up -d
    ```
 
 Esto iniciará:
-- Un contenedor MySQL con el nombre `mysql_db`.
 - La API en un contenedor llamado `gousers_api`.
 
 ## Documentación API (Swagger)
