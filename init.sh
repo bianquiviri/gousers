@@ -15,7 +15,15 @@ else
   echo -e "La red ${GREEN}bianquiviri_network${NC} ya existe."
 fi
 
-# 2. Construir e iniciar el contenedor
+# 2. Ejecutar pruebas del proyecto
+echo -e "Ejecutando pruebas unitarias..."
+go test ./...
+if [ $? -ne 0 ]; then
+  echo -e "${BLUE}Las pruebas fallaron. Abortando inicialización.${NC}"
+  exit 1
+fi
+
+# 3. Construir e iniciar el contenedor
 echo -e "Construyendo la imagen e iniciando el contenedor de la API..."
 docker compose up -d --build
 
